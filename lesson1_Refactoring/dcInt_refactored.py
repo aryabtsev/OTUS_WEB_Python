@@ -76,7 +76,6 @@ def split_snake_case_name_to_words(name):
 
 
 def get_target_functions(node_names):
-    '''возвращает все кроме служебных и магических методов'''
 
     return [f for f in node_names if not (f.startswith('__') and f.endswith('__'))]
 
@@ -92,7 +91,7 @@ def get_all_words_in_path(path):
 
 
 def parse_node_names(trees):
-    '''возвращает списком названия функций'''
+
     node_names = []
     for t in trees:
         node_names += [node.name.lower() for node in ast.walk(t) if isinstance(node, ast.FunctionDef)]
