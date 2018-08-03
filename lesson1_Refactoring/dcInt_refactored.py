@@ -100,9 +100,6 @@ def parse_node_names(trees):
     return node_names
 
 
-
-
-
 def get_top_verbs_in_path(path, top_size=10):
 
     pathways = get_filename_path(path)
