@@ -89,7 +89,7 @@ def get_top_verbs_in_path(path, top_size=10):
     node_names = []
 
     for t in trees:
-        node_names += [node.name.lower() for node in ast.walk(t) if isinstance(node, ast.FunctionDef)]
+        node_names += [node.name.lower() for node in ast.walk(t) if isinstance(node, ast.FunctionDef)]р
 
     target_funnames = [f for f in node_names if not (f.startswith('__') and f.endswith('__'))]
     verbs = flat([get_verbs_from_function_name(fname) for fname in target_funnames])
