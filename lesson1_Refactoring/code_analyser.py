@@ -1,6 +1,7 @@
 import ast
 import os
 import collections
+import argparse
 
 from Helpers import some_utils as utils
 
@@ -106,6 +107,22 @@ def get_top_functions_names_in_path(path, top_size=10):
 
 if __name__ == '__main__':
 
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--path', '-p')
+    parser.add_argument('--size', '-s')
+    namespace = parser.parse_args()
+
+    if namespace.path:
+        parent_dir = namespace.path
+    else:
+        parent_dir = '.'
+
+    if utils.isnumber(namespace.size):
+        top_size = int(namespace.size)
+    else:
+        top_size = 200
+
+
     top_verbs = []
     projects = [
         'django',
@@ -117,10 +134,10 @@ if __name__ == '__main__':
     ]
 
     for project in projects:
-        path = os.path.join('.', project)
+        path = os.path.join(parent_dir, project)
         top_verbs += get_top_verbs_in_path(path)
 
-    top_size = 200
+
     print('total %s words, %s unique' % (len(top_verbs), len(set(top_verbs))))
     for word, occurence in collections.Counter(top_verbs).most_common(top_size):
         print(word, occurence)
