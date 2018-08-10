@@ -15,6 +15,7 @@ def is_verb(word):
 
     return pos_info[0][1] == 'VB'
 
+
 def is_number(string):
 
     return str(string).isdigit()
